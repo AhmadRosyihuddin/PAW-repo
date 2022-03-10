@@ -1,16 +1,24 @@
 <?php
-function penjumlahan($a, $b){
-  return $a += $b;
+function aritmatika($nilai1, $nilai2, $operator)
+{
+  if (in_array($operator, ['+', '-', '*', '/'])) {
+    switch ($operator) {
+      case '+':
+        return $nilai1 + $nilai2;
+      case '-':
+        return $nilai1 - $nilai2;
+      case '*':
+        return $nilai1 * $nilai2;
+      case '/':
+        return $nilai1 / $nilai2;
+    }
+  }
 }
-function pengurangan($a, $b){
-  return $a -= $b;
-}
-function perkalian($a, $b){
-  return $a -= $b;
-}
-$nilai1 = 41;
-$nilai2 = 12;
-echo("hasil dari $nilai1 + $nilai2 = ".penjumlahan($nilai1,$nilai2))."<br>";
-echo("hasil dari $nilai1 - $nilai2 = ".pengurangan($nilai1,$nilai2))."<br>";
-echo("hasil dari $nilai1 * $nilai2 = ".perkalian($nilai1,$nilai2))."<br>";
+$angka1 = 20;
+$angka2 = 10;
+
+echo "Hasil Penjumlahan $angka1 + $angka2 = " . aritmatika($angka1, $angka2, '+') . "<br>";
+echo "Hasil Pengurangan $angka1 - $angka2 = " . aritmatika($angka1, $angka2, '-') . "<br>";
+echo "Hasil Perkalian $angka1 * $angka2 = " . aritmatika($angka1, $angka2, '*') . "<br>";
+echo "Hasil Pembagian $angka1 / $angka2 = " . aritmatika($angka1, $angka2, '/') . "<br>";
 ?>
