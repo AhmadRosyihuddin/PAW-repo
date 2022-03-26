@@ -13,14 +13,11 @@ include 'function.php';
 
 <body>
     <?php
-    // if (isset($_GET["pesan"]) == 'sukses') {
-    //     echo '<script language="javascript"> alert("Berhasil Menambah Data");</script>';
-    // }
     $row = select("SELECT * FROM tb_mhs");
     if (count($row)) { ?>
         <table border="5" cellspacing="1" cellpadding="10" style="margin:auto">
             <th colspan="4">Database Mahasiswa</th>
-            <th><a href="inputData.php" style="text-decoration: none; color:black;">Tambah</a></th>
+            <th><a href="tambah.php" style="text-decoration: none; color:black;">Tambah</a></th>
             <tr style="font-weight: bold; text-align:center; color:black;">
                 <td>NO</td>
                 <td>Nama</td>
@@ -36,7 +33,7 @@ include 'function.php';
                     <td><?= $data['nama_mhs']; ?></td>
                     <td><?= $data['nim_mhs']; ?></td>
                     <td><?= $data['alamat_mhs']; ?></td>
-                    <td><a href="formEdit.php?id_mhs=<?= $data['id_mhs'] ?>" style="text-decoration: none; color:black;">Edit</a> | <a href="hapus.php?id_mhs=<?= $data['id_mhs'] ?>" style="text-decoration: none; color:black;">Hapus</a></td>
+                    <td><a href="edit.php?id_mhs=<?= $data['id_mhs'] ?>" style="text-decoration: none; color:black;">Edit</a> | <a href="hapus.php?id_mhs=<?= $data['id_mhs'] ?>" style="text-decoration: none; color:black;">Hapus</a></td>
                 </tr>
             <?php $i++;
             } ?>

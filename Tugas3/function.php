@@ -14,10 +14,14 @@ function select($query)
     $data = mysqli_query($koneksi, $query);
     $rows = []; // menyimpan semua data ke dalam array
     // mengambil data satu persatu dan di tambah kan ke array
-    while ($row = mysqli_fetch_assoc($data)) {
-        $rows[] = $row;
+    if ($a = mysqli_num_rows($data) > 1) {
+        while ($row = mysqli_fetch_assoc($data)) {
+            $rows[] = $row;
+        }
+        return $rows;
+    } else {
+        return mysqli_fetch_assoc($data);
     }
-    return $rows;
 }
 
 // function delete data

@@ -13,11 +13,17 @@
     <?php
     if (isset($_POST['submit'])) {
         $tambah = tambahData($_POST);
-        if ($tambah) {
-            header("Location: index.php?pesan=sukses");
-        } else {
-            header("Location: index.php?pesan=sukses");
-        }
+        if ($tambah) { ?>
+            <script language="javascript">
+                alert('Data Berhasi Di Tambahkan');
+                document.location = 'index.php';
+            </script>
+        <?php } else { ?>
+            <script language="javascript">
+                alert('Data Gagal Di Tambahkan');
+                document.location = 'index.php';
+            </script>
+    <?php }
     }
     ?>
     <form action="" method="POST">
@@ -35,7 +41,7 @@
                 <td>: <input type="text" name="alamat_mhs" placeholder="Alamat"><br></td>
             </tr>
             <tr>
-                <td align="right"><a href="index.php"><button type="button" name="ubah">KEMBALI</button></a></td>
+                <td align="right"><a href="index.php"><button type="button" name="kembali">KEMBALI</button></a></td>
                 <td align="right"><input type="submit" name="submit"></td>
             </tr>
         </table>
