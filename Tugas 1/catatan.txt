@@ -1,0 +1,2 @@
+Tugas pertama PAW membuat sebuah akun github dan juga menginstall git 
+untuk semua tugas PAW akan di upload di github dan cara mengupload nya menggunakan git
