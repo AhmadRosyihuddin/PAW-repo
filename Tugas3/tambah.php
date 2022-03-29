@@ -63,7 +63,7 @@
             </tr>
             <tr>
                 <td align="right"><a href="index.php"><button type="button" name="kembali">KEMBALI</button></a></td>
-                <td align="right"><input type="submit" name="submit"></td>
+                <td align="right"><button type="submit" name="submit">Tambah</button></td>
             </tr>
         </table>
     </form>
