@@ -13,22 +13,42 @@ $id_mhs = $_GET['id_mhs'];
 </head>
 
 <body>
+    <!-- CDN untuk bisa mengakses sweetalert -->
+    <script src="vendor/js/sweetalert.js"></script>
     <?php
-    $row = select("SELECT * FROM tb_mhs WHERE id_mhs = '$id_mhs'");
-    if (isset($_POST['ubah'])) {
+    // cek jika terdapat POST edit maka hasil dari edit tadi akan di rubah
+    if (isset($_POST['edit'])) {
         $edit = edit($_GET['id_mhs'], $_POST);
         if ($edit) { ?>
             <script language="javascript">
-                alert('Data Berhasil Di Ubah');
-                document.location = 'index.php';
+                Swal.fire({
+                    title: 'SUKSES',
+                    text: 'DATA BERHASIL DI EDIT',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.location = "index.php"
+                    }
+                })
             </script>
         <?php } else { ?>
             <script language="javascript">
-                alert('Data Gagal Di Ubah');
                 document.location = 'index.php';
+                Swal.fire({
+                    title: 'GAGAL',
+                    text: 'DATA GAGAL DI EDIT',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.location = "index.php"
+                    }
+                })
             </script>
     <?php }
     }
+    $row = select("SELECT * FROM tbl_126 WHERE id_mhs = '$id_mhs'");
     ?>
     <form action="" method="POST">
         <table align="center">
@@ -46,7 +66,7 @@ $id_mhs = $_GET['id_mhs'];
             </tr>
             <tr>
                 <td align="right"><a href="index.php"><button type="button" name="kembali">KEMBALI</button></a></td>
-                <td align="right"><button type="submit" name="ubah">UBAH</button></td>
+                <td align="right"><button type="submit" name="edit">UBAH</button></td>
             </tr>
         </table>
     </form>

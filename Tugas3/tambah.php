@@ -10,18 +10,39 @@
 </head>
 
 <body>
+    <!-- CDN untuk bisa mengakses sweetalert -->
+    <script src="vendor/js/sweetalert.js"></script>
+
     <?php
+    // cek jika terdapat POST submit maka akan di lakukan penambahan data
     if (isset($_POST['submit'])) {
         $tambah = tambahData($_POST);
         if ($tambah) { ?>
             <script language="javascript">
-                alert('Data Berhasi Di Tambahkan');
-                document.location = 'index.php';
+                Swal.fire({
+                    title: 'SUKSES',
+                    text: 'DATA BERHASIL DI TAMBAHKAN',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.location = "index.php"
+                    }
+                })
             </script>
         <?php } else { ?>
             <script language="javascript">
-                alert('Data Gagal Di Tambahkan');
                 document.location = 'index.php';
+                Swal.fire({
+                    title: 'GAGAL',
+                    text: 'DATA GAGAL DI TAMBAHKAN',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.location = "index.php"
+                    }
+                })
             </script>
     <?php }
     }
