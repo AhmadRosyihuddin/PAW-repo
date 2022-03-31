@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 29, 2022 at 03:07 AM
+-- Generation Time: Mar 31, 2022 at 10:07 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -39,9 +39,10 @@ CREATE TABLE `tbl_126` (
 --
 
 INSERT INTO `tbl_126` (`id_mhs`, `nama_mhs`, `nim_mhs`, `alamat_mhs`) VALUES
-(25, 'Ahmad Fanani', '200411100143', 'Jombang'),
-(26, 'Teguh Setiya', '200411100283', 'Lamongan'),
-(32, 'Ahmad Rosyihuddin', '200411100126', 'Gresik');
+(113, 'Ahmad Rosyihuddin', '200411100126', 'Gresik'),
+(114, 'Teguh Setiya', '200411100143', 'Lamongan'),
+(115, 'Ahmad Fanani', '200411100283', 'Jombang'),
+(116, 'Yoga Tirta Permana', '200411100132', 'Mojokerto');
 
 --
 -- Indexes for dumped tables
@@ -61,7 +62,7 @@ ALTER TABLE `tbl_126`
 -- AUTO_INCREMENT for table `tbl_126`
 --
 ALTER TABLE `tbl_126`
-  MODIFY `id_mhs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_mhs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
