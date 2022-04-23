@@ -1,6 +1,6 @@
 <?php
 // mengkoneksikan ke database
-$koneksi = mysqli_connect('localhost', 'root', '', 'db_rosik');
+$koneksi = mysqli_connect('localhost', 'root', '', 'db_rosik1');
 // if ($koneksi) {
 //     echo "Koneksi Berhasil";
 // } else {
