@@ -33,6 +33,7 @@ if (isset($_POST['submit'])) {
         </script>
     <?php }
 } else if (isset($_GET['hapus'])) {
+    $id_mhs = $_GET["id_mhs"];
     if (delete($id_mhs)) { ?>
         <script language="javascript">
             Swal.fire({
@@ -87,9 +88,9 @@ if (isset($_POST['submit'])) {
                 }
             })
         </script>
-<?php }
-}else if (isset($_POST['edit'])) {
-    if (edit($_POST['id_mhs'],$_POST)) { ?>
+    <?php }
+} else if (isset($_POST['edit'])) {
+    if (edit($_POST['id_mhs'], $_POST)) { ?>
         <script language="javascript">
             Swal.fire({
                 title: 'SUKSES',
@@ -116,4 +117,4 @@ if (isset($_POST['submit'])) {
             })
         </script>
 <?php }
-}?>
+} ?>

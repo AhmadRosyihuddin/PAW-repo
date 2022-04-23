@@ -1,6 +1,3 @@
-<?php
-$id_mhs = $_GET["id_mhs"];
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +30,7 @@ $id_mhs = $_GET["id_mhs"];
 				</div>
 				<?php $row = select("SELECT * FROM tbl_126");
 				if (count($row)) { ?>
-					<form action="" method="POST">
+					<form method="POST">
 						<table class="table table-striped table-hover table-bordered">
 							<thead>
 								<tr>
