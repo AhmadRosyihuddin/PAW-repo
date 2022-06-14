@@ -5,6 +5,7 @@
         <form method="POST" action="{{ Route('admin.ActionFormUpdate',$menu->id) }}" enctype="multipart/form-data">
             @csrf
             <div class="position-relative row form-group">
+                <input name="oldFotoMenu" type="hidden" class="form-control" value="{{ $menu->foto_menu }}">
                 <label for="namaMenu" class="col-sm-2 col-form-label">Nama Menu</label>
                 <div class="col-sm-10">
                     <input name="nama_menu" id="namaMenu" placeholder="Masukkan Nama Menu" type="text"

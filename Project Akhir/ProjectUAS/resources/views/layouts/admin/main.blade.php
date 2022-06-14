@@ -92,9 +92,12 @@
                                                     Settings
                                                 </button>
                                                 <div tabindex="-1" class="dropdown-divider"></div>
-                                                <button type="button" tabindex="0" class="dropdown-item">
-                                                    Logout
-                                                </button>
+                                                <form action="{{  Route('admin.logout') }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" tabindex="0" class="dropdown-item" href="">
+                                                        Logout
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -178,13 +181,13 @@
                                     </a>
                                     <ul>
                                         <li>
-                                            <a href="#">
+                                            <a href="{{ Route('admin.OrderMasuk') }}">
                                                 <i class="metismenu-icon"></i>
                                                 Order Masuk
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="{{ Route('admin.RiwayatOrder') }}">
                                                 <i class="metismenu-icon"> </i>Riwayat Order
                                             </a>
                                         </li>
@@ -212,6 +215,14 @@
                                         <span class="btn-icon-wrapper pr-2 opacity-7"><i
                                                 class="fa-solid fa-circle-plus fa-w-20"></i>
                                         </span>Tambah</a>
+                                </div>
+                                @elseif($judul == 'Detail Orders')
+                                <div class="page-title-actions">
+                                    <a href="{{ Route($back) }}" aria-haspopup="true" aria-expanded="false"
+                                        class="btn-shadow btn btn-info">
+                                        <span class="btn-icon-wrapper pr-2 opacity-7"><i
+                                                class="fa-solid fa-arrow-left fa-w-20"></i>
+                                        </span>Home</a>
                                 </div>
                                 @endif
                             </div>

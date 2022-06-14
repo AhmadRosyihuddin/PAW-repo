@@ -6,6 +6,7 @@ use App\Models\Menu;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\StoreMenuRequest;
 use App\Http\Requests\UpdateMenuRequest;
+use Illuminate\Support\Facades\Storage;
 
 class MenuController extends Controller
 {
@@ -14,11 +15,21 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+
+    public function landingpage()
     {
         $menu = Menu::index();
-        // dd($menu);
         return View('index', compact('menu'), ['title' => 'Home Page']);
+    }
+
+    public function index()
+    {
+        $menu = Menu::all();
+        return View('admin.menu', compact('menu'), [
+            'title' => 'Semua Menu | Admin',
+            'judul' => 'Menu'
+        ]);
     }
 
     /**
@@ -92,8 +103,8 @@ class MenuController extends Controller
             'harga_menu' => 'required',
             'stock' => 'required',
         ]);
-
         if ($request->foto_menu) {
+            Storage::delete($request->oldFotoMenu);
             $dataValidate['foto_menu'] = $request->file('foto_menu')->store('foto_menu');
         }
         $menu->update($dataValidate);
@@ -108,6 +119,7 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
+        Storage::delete($menu->foto_menu);
         Menu::destroy($menu->id);
         return redirect()->route('admin.ViewMenu')->withPesan('Menu Berhasil Di Hapus');
     }

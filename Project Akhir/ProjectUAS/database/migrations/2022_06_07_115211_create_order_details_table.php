@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id('id');
-            $table->foreignId('id_order')->constrained('orders')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_order')->constrained('orders')->onDelete('cascade')->onUpdate('cascade')->uniqid();
             $table->foreignId('id_menu')->constrained('menus')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('total_harga', 50);
+            $table->integer('jmlh_pesanan');
             $table->timestamps();
         });
     }

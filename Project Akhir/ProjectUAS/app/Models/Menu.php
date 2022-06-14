@@ -15,4 +15,9 @@ class Menu extends Model
         $menuFav = DB::table('menus')->select('nama_menu', 'harga_menu', 'foto_menu')->limit(4)->get();
         return $menuFav;
     }
+
+    public function orderdetail()
+    {
+        return $this->hasMany(OrderDetail::class);
+    }
 }

@@ -6,10 +6,9 @@
         <div class="row">
             <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center pesan">
                 <h1>Krusty Krab</h1>
-                {{-- {{ dd(Auth::user()->orderswe) }} --}}
                 <h2>restourant penyedia makanan laut dan juga darat</h2>
                 <div>
-                    <a href="login" class="button">
+                    <a href="{{ Route('cus.login') }}" class="button">
                         <button>Pesan</button>
                     </a>
                 </div>

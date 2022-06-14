@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\OrderDetail;
 use App\Http\Requests\StoreOrderDetailRequest;
 use App\Http\Requests\UpdateOrderDetailRequest;
+use App\Models\Customer;
 
 class OrderDetailController extends Controller
 {
@@ -13,9 +14,15 @@ class OrderDetailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function detailOrder(Customer $customer)
     {
-        //
+        $orderDetail = Customer::with(['order.orderdetail.menu'])->get();
+        return View('admin.detail', compact('orderDetail'), [
+            'title' => 'Detail Orders | Admin',
+            'judul' => 'Detail Orders',
+            'back' => 'admin.RiwayatOrder'
+        ]);
     }
 
     /**

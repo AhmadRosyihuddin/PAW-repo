@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Menu;
 use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -20,14 +19,21 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function adminhome()
     {
         $order = Order::all();
         return View('admin.home', compact('order'), ['title' => 'Dashboard | Admin', 'judul' => 'Dashboard']);
     }
+
+    public function kasirhome()
+    {
+        $order = Order::all();
+        return View('kasir.home', compact('order'), ['title' => 'Dashboard | Kasir', 'judul' => 'Dashboard']);
+    }
+
     public function loginAdmin()
     {
-        return View('admin.index', ['title' => 'Admin | Login']);
+        return View('login.adminLogin', ['title' => 'Admin | Login']);
     }
 
     public function adminAction(Request $request)
@@ -38,8 +44,14 @@ class UserController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended(route('admin.home'));
+            if (User::getlevel($request->username) == 'Admin') {
+
+                $request->session()->regenerate();
+                return redirect()->intended(route('admin.home'));
+            } else {
+                $request->session()->regenerate();
+                return redirect()->intended(route('kasir.home'));
+            }
         }
 
         return back()->withErrors([
@@ -47,16 +59,13 @@ class UserController extends Controller
         ]);
     }
 
-    public function viewmenu()
+    public function logout()
     {
-        $menu = Menu::all();
-        return View('admin.menu', compact('menu'), [
-            'no' => 1,
-            'title' => 'Semua Menu | Admin',
-            'judul' => 'Menu'
-        ]);
+        auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerate();
+        return redirect()->route('admin.login');
     }
-
     /**
      * Show the form for creating a new resource.
      *

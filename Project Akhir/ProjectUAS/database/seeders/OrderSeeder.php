@@ -15,6 +15,40 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        Order::factory(4)->create();
+        Order::create([
+            'id_user' => '1',
+            'id_customer' => '2',
+            'jml_order' => '0'
+        ]);
+        Order::create([
+            'id_user' => '1',
+            'id_customer' => '1',
+            'jml_order' => '0'
+        ]);
+        Order::create([
+            'id_user' => '1',
+            'id_customer' => '3',
+            'jml_order' => '0'
+        ]);
+        Order::create([
+            'id_user' => '1',
+            'id_customer' => '5',
+            'jml_order' => '0'
+        ]);
+        Order::create([
+            'id_user' => '1',
+            'id_customer' => '6',
+            'jml_order' => '0'
+        ]);
+        Order::create([
+            'id_user' => '1',
+            'id_customer' => '7',
+            'jml_order' => '0'
+        ]);
+        Order::create([
+            'id_user' => '1',
+            'id_customer' => '8',
+            'jml_order' => '0'
+        ]);
     }
 }

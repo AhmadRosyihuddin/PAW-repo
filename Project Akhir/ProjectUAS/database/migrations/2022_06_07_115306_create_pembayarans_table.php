@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('id');
             $table->foreignId('id_customer')->constrained('customers')->onDelete('cascade')->onUpdate('cascade');
             $table->date('tgl_pembayaran');
+            $table->integer('total_pembayaran');
             $table->timestamps();
         });
     }

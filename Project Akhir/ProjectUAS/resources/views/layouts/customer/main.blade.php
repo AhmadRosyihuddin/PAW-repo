@@ -37,7 +37,7 @@
                         <li><a class="nav-link scrollto" href="#ulas">Ulas Kami</a></li>
 
                         <li class="tombol">
-                            <a class="nav-link scrollto" href="login">
+                            <a class="nav-link scrollto" href="{{ Route('cus.login') }}">
                                 <button id="tombol-login">Login</button>
                             </a>
                         </li>

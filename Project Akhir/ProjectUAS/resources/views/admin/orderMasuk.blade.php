@@ -25,9 +25,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($menu as $row )
+                {{-- @foreach ($menu as $row )
                 <tr>
-                    <th scope="row">{{ $loop->iteration }}</th>
+                    <th scope="row">{{ $no++ }}</th>
                     <td>
                         <img src="{{ asset($row->foto_menu)}}" class="img-thumbnail" style="width: 100px; height:100px">
                     </td>
@@ -45,7 +45,7 @@
                         </form>
                     </td>
                 </tr>
-                @endforeach
+                @endforeach --}}
             </tbody>
         </table>
     </div>

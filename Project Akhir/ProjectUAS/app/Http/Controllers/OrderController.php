@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\Customer;
 
 class OrderController extends Controller
 {
@@ -13,9 +14,25 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function riwayat()
     {
-        //
+        $riwayat = Customer::with('meja')->get();
+        return View('admin.riwayatOrder', compact('riwayat'), [
+            'title' => 'Riwayat Orders | Admin',
+            'judul' => 'Riwayat Orders',
+            'back' => 'admin.RiwayatOrder'
+        ]);
+    }
+
+
+    public function orders()
+    {
+        $orders = Order::with('meja')->get();
+        return View('admin.orderMasuk', compact('orders'), [
+            'title' => 'Orders | Admin',
+            'judul' => 'Orders',
+            'back' => 'admin.OrderMasuk'
+        ]);
     }
 
     /**

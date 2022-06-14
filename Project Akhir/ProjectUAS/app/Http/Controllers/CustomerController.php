@@ -28,7 +28,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return View('customer.index', ['title' => 'Login']);
+        return View('login.cusLogin', ['title' => 'Login']);
     }
 
     /**
