@@ -19,7 +19,7 @@ class MenuController extends Controller
 
     public function landingpage()
     {
-        $menu = Menu::index();
+        $menu = Menu::menuFav();
         return View('index', compact('menu'), ['title' => 'Home Page']);
     }
 

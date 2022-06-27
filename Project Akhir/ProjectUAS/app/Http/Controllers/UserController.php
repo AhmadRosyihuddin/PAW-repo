@@ -19,16 +19,16 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
+    public function kasirhome()
+    {
+        return View('kasir.home', ['title' => 'Dashboard | Kasir', 'judul' => 'Dashboard']);
+    }
+
     public function adminhome()
     {
         $order = Order::all();
         return View('admin.home', compact('order'), ['title' => 'Dashboard | Admin', 'judul' => 'Dashboard']);
-    }
-
-    public function kasirhome()
-    {
-        $order = Order::all();
-        return View('kasir.home', compact('order'), ['title' => 'Dashboard | Kasir', 'judul' => 'Dashboard']);
     }
 
     public function loginAdmin()
@@ -42,14 +42,11 @@ class UserController extends Controller
             'username' => 'required',
             'password' => 'required',
         ]);
-
         if (Auth::attempt($credentials)) {
-            if (User::getlevel($request->username) == 'Admin') {
-
-                $request->session()->regenerate();
+            $request->session()->regenerate();
+            if (auth()->user()->level === 'Admin') {
                 return redirect()->intended(route('admin.home'));
             } else {
-                $request->session()->regenerate();
                 return redirect()->intended(route('kasir.home'));
             }
         }

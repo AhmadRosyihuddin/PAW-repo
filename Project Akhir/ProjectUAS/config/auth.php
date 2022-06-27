@@ -65,9 +65,9 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
+        // 'mejas' => [
         //     'driver' => 'database',
-        //     'table' => 'users',
+        //     'table' => 'mejas',
         // ],
     ],
 

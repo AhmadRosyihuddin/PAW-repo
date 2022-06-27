@@ -10,10 +10,13 @@ class Menu extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    public static function index()
+    public static function menuFav()
     {
-        $menuFav = DB::table('menus')->select('nama_menu', 'harga_menu', 'foto_menu')->limit(4)->get();
-        return $menuFav;
+        return DB::table('menus')->select('nama_menu', 'harga_menu', 'foto_menu')->limit(4)->get();
+    }
+    public static function getHarga($id_menu)
+    {
+        return DB::table('menus')->select('harga_menu')->where('id', $id_menu)->get();
     }
 
     public function orderdetail()

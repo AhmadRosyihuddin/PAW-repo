@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Http\Requests\StoreOrderDetailRequest;
 use App\Http\Requests\UpdateOrderDetailRequest;
-use App\Models\Customer;
 
 class OrderDetailController extends Controller
 {
@@ -15,13 +15,14 @@ class OrderDetailController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function detailOrder(Customer $customer)
+    public function detailOrder(Order $order)
     {
-        $orderDetail = Customer::with(['order.orderdetail.menu'])->get();
+        $orderDetail = Order::where('id', $order->id)->with(['orderdetail.menu'])->get();
         return View('admin.detail', compact('orderDetail'), [
             'title' => 'Detail Orders | Admin',
             'judul' => 'Detail Orders',
-            'back' => 'admin.RiwayatOrder'
+            'back' => 'admin.RiwayatOrder',
+            'id_order' => $order->id
         ]);
     }
 
@@ -43,7 +44,12 @@ class OrderDetailController extends Controller
      */
     public function store(StoreOrderDetailRequest $request)
     {
-        //
+        OrderDetail::create([
+            'id_order' => OrderDetail::getNewOrder()->first()->id,
+            'id_menu' => $request->id_menu,
+            'jml_order' => 0,
+            'sub_total' => 0
+        ]);
     }
 
     /**

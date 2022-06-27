@@ -15,8 +15,11 @@
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>ID Order</th>
                     <th>Customer</th>
                     <th>Nomor Meja</th>
+                    <th>Tanggal Order</th>
+                    <th>Total Pembayaran</th>
                     <th>Pesanan</th>
                 </tr>
             </thead>
@@ -24,8 +27,11 @@
                 @foreach ($riwayat as $row )
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $row->nama_user }}</td>
-                    <td>{{ $row->meja->no_meja }}</td>
+                    <td>{{ $row->id }}</td>
+                    <td>{{ $row->nama_cus }}</td>
+                    <td>{{ $row->no_meja }}</td>
+                    <td>{{ $row->tgl_order }}</td>
+                    <td>{{ $row->total_pembayaran }}</td>
                     <td><a href="/admin/detail/{{ $row->id }}" class="btn btn-primary">Detail
                             Order</a></td>
                 </tr>

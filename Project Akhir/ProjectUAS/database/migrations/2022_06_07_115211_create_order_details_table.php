@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id('id');
-            $table->foreignId('id_order')->constrained('orders')->onDelete('cascade')->onUpdate('cascade')->uniqid();
+            $table->integer('id_order');
             $table->foreignId('id_menu')->constrained('menus')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('jmlh_pesanan');
+            $table->integer('jml_order');
+            $table->integer('sub_total')->nullable();
             $table->timestamps();
+            $table->foreign('id_order')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -17,7 +17,7 @@
                                 <td>
                                     <div class="input-field mb-4 mt-4">
                                         <span class="far fa-user px-2"></span>
-                                        <input type="text" placeholder="Nama" name="nama_user" required>
+                                        <input type="text" placeholder="Nama" name="nama_cus" required>
                                     </div>
                                 </td>
                             </tr>
@@ -27,7 +27,13 @@
                                 <td>
                                     <div class="input-field">
                                         <span class="fas fa-lock px-2"></span>
-                                        <input type="text" placeholder="Nomor Meja" name="no_meja" required>
+                                        <select type="text" placeholder="Nomor Meja" name="no_meja" required
+                                            class="form-select form-select-sm">
+                                            <option value="">--No Meja--</option>
+                                            @foreach ($meja as $nomor)
+                                            <option value="{{ $nomor->no_meja }}">{{ $nomor->no_meja }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </td>
                             </tr>

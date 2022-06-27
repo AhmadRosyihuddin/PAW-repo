@@ -18,37 +18,10 @@ class OrderSeeder extends Seeder
         Order::create([
             'id_user' => '1',
             'id_customer' => '2',
-            'jml_order' => '0'
-        ]);
-        Order::create([
-            'id_user' => '1',
-            'id_customer' => '1',
-            'jml_order' => '0'
-        ]);
-        Order::create([
-            'id_user' => '1',
-            'id_customer' => '3',
-            'jml_order' => '0'
-        ]);
-        Order::create([
-            'id_user' => '1',
-            'id_customer' => '5',
-            'jml_order' => '0'
-        ]);
-        Order::create([
-            'id_user' => '1',
-            'id_customer' => '6',
-            'jml_order' => '0'
-        ]);
-        Order::create([
-            'id_user' => '1',
-            'id_customer' => '7',
-            'jml_order' => '0'
-        ]);
-        Order::create([
-            'id_user' => '1',
-            'id_customer' => '8',
-            'jml_order' => '0'
+            'jml_order' => '0',
+            'total_pembayaran' => 0,
+            'tgl_order' => '2022-06-15',
+            'status_order' => 'Wait'
         ]);
     }
 }

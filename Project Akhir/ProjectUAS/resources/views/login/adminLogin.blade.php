@@ -17,7 +17,7 @@
                                 <td>Username</td>
                                 <td>
                                     @error('username')
-                                        <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger">{{ $message }}</span>
                                     @enderror
 
                                     <div class="input-field mb-4 mt-4">

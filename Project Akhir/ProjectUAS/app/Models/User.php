@@ -6,6 +6,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -18,7 +19,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -40,13 +41,8 @@ class User extends Authenticatable
     ];
 
 
-    public function order()
-    {
-        return $this->hasMany(Order::class, 'id_user', 'id');
-    }
-
     public static function getLevel($username)
     {
-        return (DB::table('users')->select('level')->where('username', '=', $username)->value('level'));
+        return DB::table('users')->select('level')->where('username', '=', $username)->value('level');
     }
 }

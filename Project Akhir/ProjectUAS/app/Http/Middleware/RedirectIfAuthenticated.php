@@ -20,13 +20,18 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, ...$guards)
     {
         $guards = empty($guards) ? [null] : $guards;
-
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                // dd(Auth::guard($guard)->user()->level);
+                if (Auth::guard($guard)->user()->level == 'Admin') {
+                    return redirect(RouteServiceProvider::ADMIN);
+                } elseif (Auth::guard($guard)->user()->level == 'Kasir') {
+                    return redirect(RouteServiceProvider::KASIR);
+                }
+            } elseif (session()->get('nama_cus')) {
                 return redirect(RouteServiceProvider::HOME);
             }
         }
-
         return $next($request);
     }
 }

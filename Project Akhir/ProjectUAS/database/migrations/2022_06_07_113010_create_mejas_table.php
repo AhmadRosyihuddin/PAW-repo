@@ -14,9 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('mejas', function (Blueprint $table) {
-            $table->id('id');
-            $table->char('no_meja', 5);
-            $table->string('status_meja', 20);
+            $table->char('no_meja', 5)->primary();
+            $table->enum('status_meja', ['Used', 'Kosong']);
             $table->timestamps();
         });
     }

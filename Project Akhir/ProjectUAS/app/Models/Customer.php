@@ -10,10 +10,6 @@ class Customer extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    public function pembayaran()
-    {
-        return $this->hasMany(Order::class, 'id_customer', 'id');
-    }
 
     public function order()
     {

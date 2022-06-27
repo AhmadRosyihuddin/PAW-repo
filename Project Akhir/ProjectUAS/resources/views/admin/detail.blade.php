@@ -10,26 +10,26 @@
 </div>
 @endif
 <div class="main-card mb-3 card">
+    <div class="card-header">
+        ID Order : {{ $id_order }}
+    </div>
     <div class="card-body">
         <table class="mb-0 table table-sm">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Nama Menu</th>
+                    <th>Kategori</th>
                     <th>Jumlah Pesanan</th>
-                    <th>Detail Pesanan</th>
                 </tr>
             </thead>
             <tbody>
-                {{-- @dd($orderDetail->first()->order->first()->orderdetail->first()->menu->nama_menu) --}}
-                {{-- @dd($orderDetail) --}}
-                @foreach ($orderDetail as $row )
-                {{-- @dd($row) --}}
+                @foreach ($orderDetail->first()->orderdetail as $row )
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $row->order->first()->orderdetail->id }}</td>
-                    <td>{{ $row }}</td>
-                    <td>{{ $row->status_user }}</td>
+                    <td>{{ $row->menu->nama_menu }}</td>
+                    <td>{{ $row->menu->kategori }}</td>
+                    <td>{{ $row->jml_order }}</td>
                 </tr>
                 @endforeach
             </tbody>

@@ -21,7 +21,7 @@ class OrderDetailSeeder extends Seeder
             'jmlh_pesanan' => 2
         ]);
         OrderDetail::create([
-            'id_order' => 2,
+            'id_order' => 1,
             'id_menu' => 3,
             'jmlh_pesanan' => 3
         ]);

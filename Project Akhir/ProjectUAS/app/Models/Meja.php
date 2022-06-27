@@ -10,4 +10,8 @@ class Meja extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    public function meja()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }

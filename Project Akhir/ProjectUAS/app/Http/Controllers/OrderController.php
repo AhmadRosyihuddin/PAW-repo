@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
 use App\Models\Order;
+use App\Models\OrderDetail;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
-use App\Models\Customer;
 
 class OrderController extends Controller
 {
@@ -16,7 +18,7 @@ class OrderController extends Controller
      */
     public function riwayat()
     {
-        $riwayat = Customer::with('meja')->get();
+        $riwayat = Order::where('status_order', 'Proses')->get();
         return View('admin.riwayatOrder', compact('riwayat'), [
             'title' => 'Riwayat Orders | Admin',
             'judul' => 'Riwayat Orders',
@@ -27,7 +29,8 @@ class OrderController extends Controller
 
     public function orders()
     {
-        $orders = Order::with('meja')->get();
+        // $orders = Order::where('status_order', 'Proses')->with('meja')->get();
+        $orders = Order::where('status_order', 'Proses')->get();
         return View('admin.orderMasuk', compact('orders'), [
             'title' => 'Orders | Admin',
             'judul' => 'Orders',
@@ -35,36 +38,49 @@ class OrderController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function pesan(StoreOrderRequest $request)
     {
-        //
+        $request->validate([
+            'jml_order' => 'required'
+        ]);
+
+        if (Session::get('id_order') == null) {
+            $id = Order::count() + 1;
+            session(['id_order' => $id]);
+            Order::create([
+                'id' => $id,
+                'nama_cus' => Session::get('nama_cus'),
+                'no_meja' => Session::get('no_meja'),
+                'total_order' => 0,
+                'total_pembayaran' => 0,
+                'tgl_order' => date('Y-m-d'),
+                'status_order' => 'Proses'
+            ]);
+        }
+        // session()->forget('id_order');
+        $id_order = Session::get('id_order');
+        $sub_total = $request->jml_order * Menu::getHarga($request->id_menu)->first()->harga_menu;
+        OrderDetail::create([
+            'id_order' => $id_order,
+            'id_menu' => $request->id_menu,
+            'jml_order' => $request->jml_order,
+            'sub_total' => $sub_total
+        ]);
+
+        return redirect()->route('cus.home');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreOrderRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreOrderRequest $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
+    public function cariorder(StoreOrderRequest $request)
     {
-        //
+        $order = Order::where('id', $request->id_cus)->with(['orderdetail.menu'])->get();
+
+        if (count($order)) {
+            return redirect()->route('kasir.home')->with(compact('order'));
+        } else {
+            return redirect()->route('kasir.home');
+        }
     }
 
     /**

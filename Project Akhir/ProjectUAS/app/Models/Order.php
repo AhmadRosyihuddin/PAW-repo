@@ -5,26 +5,21 @@ namespace App\Models;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+
 
 class Order extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
-    public function customers()
+    public function meja()
     {
-        return $this->belongsTo(Customer::class, 'id_customer', 'id');
+        return $this->hasMany(Meja::class, 'no_meja', 'no_meja');
     }
 
 
     public function orderdetail()
     {
         return $this->hasMany(OrderDetail::class, 'id_order', 'id');
-    }
-
-    public function getOrder()
-    {
-        dd(User::customers());
     }
 }

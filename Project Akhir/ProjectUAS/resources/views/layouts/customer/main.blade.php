@@ -37,9 +37,15 @@
                         <li><a class="nav-link scrollto" href="#ulas">Ulas Kami</a></li>
 
                         <li class="tombol">
+                            @if (session()->get('nama_cus'))
+                            <a class="nav-link scrollto" href="{{ Route('cus.logout') }}">
+                                <button id="tombol-login">Logout</button>
+                            </a>
+                            @else
                             <a class="nav-link scrollto" href="{{ Route('cus.login') }}">
                                 <button id="tombol-login">Login</button>
                             </a>
+                            @endif
                         </li>
                     </ul>
                     <i class="bi bi-list mobile-nav-toggle"></i>
@@ -174,6 +180,8 @@
         <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
         <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
         <script src="assets/vendor/php-email-form/validate.js"></script>
+        <script src="../vendor/jquery/jquery.min.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Template Main JS File -->
         <script src="assets/js/main.js"></script>

@@ -15,37 +15,30 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Foto Menu</th>
-                    <th>Nama Menu</th>
-                    <th>Deskripsi</th>
-                    <th>Jenis Menu</th>
-                    <th>Harga</th>
-                    <th>Stock</th>
+                    <th>Nama Customer</th>
+                    <th>Nomor Meja</th>
+                    <th>Detail Pesanan</th>
                     <th>Opsi</th>
                 </tr>
             </thead>
             <tbody>
-                {{-- @foreach ($menu as $row )
+                {{-- @dd($orders) --}}
+                @foreach ($orders as $row )
                 <tr>
-                    <th scope="row">{{ $no++ }}</th>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $row->nama_cus }}</td>
+                    <td>{{ $row->no_meja }}</td>
+                    <td><a href="/admin/detail/{{ $row->id }}" class="btn btn-primary">Detail
+                            Order</a></td>
                     <td>
-                        <img src="{{ asset($row->foto_menu)}}" class="img-thumbnail" style="width: 100px; height:100px">
-                    </td>
-                    <td>{{ $row->nama_menu }}</td>
-                    <td>{{ $row->deskripsi_menu }}</td>
-                    <td>{{ $row->kategori }}</td>
-                    <td>{{ $row->harga_menu }}</td>
-                    <td>{{ $row->stock }}</td>
-                    <td>
-                        <a class="btn btn-primary" href="/admin/{{ $row->id }}/edit">Edit</a>
-                        <form action="/admin/hapus/{{ $row->id }}" method="POST" class="d-inline">
+                        <form action="/admin/ordercomplate/{{ $row->id }}" method="POST" class="d-inline">
                             @csrf
                             @method('delete')
-                            <button class="btn btn-danger">Hapus</button>
+                            <button class="btn btn-primary">Complated</button>
                         </form>
                     </td>
                 </tr>
-                @endforeach --}}
+                @endforeach
             </tbody>
         </table>
     </div>
